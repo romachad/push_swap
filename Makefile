@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS_FILES = main check_input
+SRCS_FILES = main check_input check_size error
 HEADERS_FILES = push_swap libft
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
