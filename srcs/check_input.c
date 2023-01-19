@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:14:42 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/17 23:44:06 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:24:44 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ void	check_input(t_ps *ps, int argc, char *argv[])
 		error(2);
 	if (check_size(argc, argv) != 0)
 		error(3);
-	ps->arg_a = argc - 1;
-	ps->arg_b = 0;
-	ps->stack_a = ft_calloc(ps->arg_a, sizeof(int));
-	ps->stack_b = ft_calloc(ps->arg_a, sizeof(int));
+	ps->size_a = argc - 1;
+	ps->size_b = 0;
+	ps->stack_a = ft_calloc(ps->size_a, sizeof(int));
+	ps->stack_b = ft_calloc(ps->size_a, sizeof(int));
 	i = 0;
 	while (argv[++i])
 		ps->stack_a[i - 1] = ft_atoi(argv[i]);
-	if (repeated_numbers(ps->stack_a, ps->arg_a) == 1)
+	if (repeated_numbers(ps->stack_a, ps->size_a) == 1)
 	{
 		free(ps->stack_a);
 		free(ps->stack_b);
