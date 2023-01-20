@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:43:49 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/19 01:53:10 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/20 00:28:34 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,60 @@
 
 //#include <limits.h>
 #include <stdio.h>
+int	exists_bit(int *stack, int size, int comparator)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+	{
+		if ((stack[i] & comparator) == comparator)
+			return (1);
+	}
+	return (0);
+}
+
+void	first_loop(t_ps *ps)
+{
+	int	comparator;
+	int	i;
+
+	ps->ra = 0;
+	comparator = 1;
+	while (exists_bit(ps->stack_a, ps->size_a, comparator))
+	{
+		if ((ps->stack_a[0] & comparator) == comparator)
+		{
+			push_b(ps);
+			if (ps->size_b > 1)
+				rotate_b(ps);
+		}
+		else
+		{
+			rotate_a(ps);
+			ps->ra++;
+		}
+	}
+	while (ps->size_a > 0)
+	{
+		i = (ps->ra % ps->size_a);
+		while (i < ps->size_a && i != 0) //PODE SER OTIMIZADO!
+		{
+			rotate_a(ps);
+			i++;
+		}
+		ps->ra = 0;
+		rrotate_a(ps);
+		push_b(ps);
+	}
+}
+
+void	test_order(t_ps *ps)
+{
+	first_loop(ps);
+}
+
+
 int	main(int argc, char *argv[])
 {
 	t_ps	ps;
@@ -32,26 +86,32 @@ int	main(int argc, char *argv[])
 	}
 	printf("\nLETS GO;\n");
 
-	rotate_a(&ps);
-	rotate_a(&ps);
-	rotate_a(&ps);
-	rotate_a(&ps);
-	push_b(&ps);
-	push_b(&ps);
-	push_b(&ps);
-	rotate_a(&ps);
-	push_b(&ps);
-	push_b(&ps);
-	push_b(&ps);
-	push_b(&ps);
-	rotate_a(&ps);
-	rotate_a(&ps);
-	rotate_a(&ps);
-	push_b(&ps);
-	/*for (i = 0; i < ps.size_a; i++)
+	test_order(&ps);
+	for (i = 0; i < ps.size_a; i++)
 		printf("pos a %i: %i\n", i, ps.stack_a[i]);
 	for (i = 0; i < ps.size_b; i++)
-		printf("pos b %i: %i\n", i, ps.stack_b[i]);*/
+		printf("pos b %i: %i\n", i, ps.stack_b[i]);
+
+	/*rotate_a(&ps);
+	rotate_a(&ps);
+	rotate_a(&ps);
+	rotate_a(&ps);
+	push_b(&ps);
+	push_b(&ps);
+	push_b(&ps);
+	rotate_a(&ps);
+	push_b(&ps);
+	push_b(&ps);
+	push_b(&ps);
+	push_b(&ps);
+	rotate_a(&ps);
+	rotate_a(&ps);
+	rotate_a(&ps);
+	push_b(&ps);
+	//for (i = 0; i < ps.size_a; i++)
+	//	printf("pos a %i: %i\n", i, ps.stack_a[i]);
+	//for (i = 0; i < ps.size_b; i++)
+	//	printf("pos b %i: %i\n", i, ps.stack_b[i]);
 	push_a(&ps);
 	push_a(&ps);
 	push_a(&ps);
@@ -169,7 +229,7 @@ int	main(int argc, char *argv[])
 	for (i = 0; i < ps.size_b; i++)
 		printf("pos b %i: %i\n", i, ps.stack_b[i]);
 
-
+*/
 
 
 

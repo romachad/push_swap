@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 22:22:59 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/18 22:44:38 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/20 00:44:54 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rrotate_a(t_ps *ps)
 			ps->stack_a[i] = ps->stack_a[i - 1];
 		ps->stack_a[0] = swap;
 	}
-	ft_putstr_fd("ra\n", 1);
+	ft_putstr_fd("rra\n", 1);
 }
 
 void	rrotate_b(t_ps *ps)
@@ -42,7 +42,7 @@ void	rrotate_b(t_ps *ps)
 			ps->stack_b[i] = ps->stack_b[i - 1];
 		ps->stack_b[0] = swap;
 	}
-	ft_putstr_fd("rb\n", 1);
+	ft_putstr_fd("rrb\n", 1);
 }
 
 void	rrr(t_ps *ps)

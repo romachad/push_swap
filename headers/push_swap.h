@@ -6,7 +6,7 @@
 /*   By: romachad </var/spool/mail/coret>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:49:08 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/18 22:41:24 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/20 00:03:49 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_ps
 {
 	int	*stack_a;
 	int	size_a;
+	int	ra;
 	int	*stack_b;
 	int	size_b;
 }	t_ps;
