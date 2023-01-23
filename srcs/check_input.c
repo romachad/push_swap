@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:14:42 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/18 20:24:44 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/22 02:38:50 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	check_input(t_ps *ps, int argc, char *argv[])
 	ps->size_b = 0;
 	ps->stack_a = ft_calloc(ps->size_a, sizeof(int));
 	ps->stack_b = ft_calloc(ps->size_a, sizeof(int));
+	ps->tmp = ft_calloc(ps->size_a, sizeof(int));
+	ps->sorted = ft_calloc(ps->size_a, sizeof(int));
 	i = 0;
 	while (argv[++i])
 		ps->stack_a[i - 1] = ft_atoi(argv[i]);

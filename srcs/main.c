@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:43:49 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/20 00:28:34 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/22 21:29:22 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,58 +15,12 @@
 
 //#include <limits.h>
 #include <stdio.h>
-int	exists_bit(int *stack, int size, int comparator)
-{
-	int	i;
-
-	i = -1;
-	while (++i < size)
-	{
-		if ((stack[i] & comparator) == comparator)
-			return (1);
-	}
-	return (0);
-}
-
-void	first_loop(t_ps *ps)
-{
-	int	comparator;
-	int	i;
-
-	ps->ra = 0;
-	comparator = 1;
-	while (exists_bit(ps->stack_a, ps->size_a, comparator))
-	{
-		if ((ps->stack_a[0] & comparator) == comparator)
-		{
-			push_b(ps);
-			if (ps->size_b > 1)
-				rotate_b(ps);
-		}
-		else
-		{
-			rotate_a(ps);
-			ps->ra++;
-		}
-	}
-	while (ps->size_a > 0)
-	{
-		i = (ps->ra % ps->size_a);
-		while (i < ps->size_a && i != 0) //PODE SER OTIMIZADO!
-		{
-			rotate_a(ps);
-			i++;
-		}
-		ps->ra = 0;
-		rrotate_a(ps);
-		push_b(ps);
-	}
-}
-
-void	test_order(t_ps *ps)
-{
-	first_loop(ps);
-}
+//printf("b[0]: %i\n", ps->stack_b[0]);
+//printf("b[1]: %i\n", ps->stack_b[1]);
+//printf("b[size_b -1]: %i\n",ps->stack_b[ps->size_b -1]);
+//printf("a[0]: %i\n", ps->stack_a[0]);
+//printf("a[1]: %i\n", ps->stack_a[1]);
+//printf("a[size_a -1]: %i\n",ps->stack_a[ps->size_a -1]);
 
 
 int	main(int argc, char *argv[])
@@ -85,12 +39,77 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	printf("\nLETS GO;\n");
-
-	test_order(&ps);
-	for (i = 0; i < ps.size_a; i++)
+	printf("is sorted: %d\n", is_sorted(ps.stack_a, ps.size_a));
+	
+	//fill_sorted(&ps);
+	//fill_tmp(&ps);
+	ps.full_size = ps.size_a;
+	if (ps.size_a > 5)
+		push_30pct(&ps);
+	if (ps.size_a == 3)
+		sort_3(&ps, ps.stack_a, ps.size_a);
+	else if (ps.size_a == 2 && is_sorted(ps.stack_a, ps.size_a) == 0)
+		swap_a(&ps);
+	else if (is_sorted(ps.stack_a, ps.size_a) == 0 && ps.size_a > 3)
+		sort_5(&ps);
+	/*for (i = 0; i < ps.size_a; i++)
 		printf("pos a %i: %i\n", i, ps.stack_a[i]);
 	for (i = 0; i < ps.size_b; i++)
 		printf("pos b %i: %i\n", i, ps.stack_b[i]);
+	for (i = 0; i < ps.size_a; i++)
+		printf("pos sorted %i: %i\n", i, ps.sorted[i]);
+	for (i = 0; i < ps.size_a; i++)
+		printf("pos tmp %i: %i\n", i, ps.tmp[i]);
+	printf("--FROM B TO A----\n");*/
+	from_b_to_a(&ps);
+	printf("CABOU----\n");
+	for (i = 0; i < ps.size_a; i++)
+		printf("pos a %i: %i\n", i, ps.stack_a[i]);
+
+	printf("\nis sorted: %d\n", is_sorted(ps.stack_a, ps.size_a));
+	/*ps.stack_b[0] = 3;
+	ps.stack_b[1] = 1;
+	ps.stack_b[2] = 2;
+	ps.size_b = 3;
+
+
+	sort_3(&ps, ps.stack_a, ps.size_a);
+	rev_sort_3(&ps, ps.stack_b, ps.size_b);*/
+
+	/*i = 1;
+	printf("i: %d\n", i);
+	i = i << 1;
+	printf("i: %d\n", i);
+	i = i << 1;
+	printf("i: %d\n", i);
+	i = i << 1;
+	printf("i: %d\n", i);
+	i = i << 1;
+	printf("i: %d\n", i);
+	i = i << 4;
+	printf("i: %d\n", i);
+	i = i << 16;
+	printf("i: %d\n", i);
+	i = i << 7;
+	printf("i: %d\n", i);
+	i = i << 1;
+	printf("i: %d\n", i);
+	i = i << 1;
+	printf("i: %d\n", i);*/
+
+	/*test_order(&ps);
+	for (i = 0; i < ps.size_a; i++)
+		printf("pos a %i: %i\n", i, ps.stack_a[i]);
+	for (i = 0; i < ps.size_b; i++)
+		printf("pos b %i: %i\n", i, ps.stack_b[i]);*/
+
+
+	//big_sort(&ps);
+	//double_sort(&ps);
+	//for (i = 0; i < ps.size_a; i++)
+	//	printf("pos a %i: %i\n", i, ps.stack_a[i]);
+	//for (i = 0; i < ps.size_b; i++)
+	//	printf("pos b %i: %i\n", i, ps.stack_b[i]);
 
 	/*rotate_a(&ps);
 	rotate_a(&ps);
@@ -345,6 +364,8 @@ int	main(int argc, char *argv[])
 		printf("pos b %i: %i\n", i, ps.stack_b[i]);*/
 	free(ps.stack_a);
 	free(ps.stack_b);
+	free(ps.tmp);
+	free(ps.sorted);
 	/*printf("%d\n", INT_MAX);
 	printf("%d\n", INT_MIN);
 	unsigned int t;
