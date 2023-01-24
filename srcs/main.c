@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:43:49 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/22 21:29:22 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/24 06:48:04 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ int	main(int argc, char *argv[])
 {
 	t_ps	ps;
 
-	if (argc <= 1)
+	if (argc < 2)
 	{
 		exit (255);
 	}
-	check_input(&ps, argc, argv);
-	int	i = 0;
+	else if (argc == 2)
+		check_single_input(&ps, argc, argv);
+	else
+		check_input(&ps, argc, argv);
+	int	i = 0;/*
 	while (i < ps.size_a)
 	{
 		printf("pos %i: %i\n", i, ps.stack_a[i]);
 		i++;
 	}
 	printf("\nLETS GO;\n");
-	printf("is sorted: %d\n", is_sorted(ps.stack_a, ps.size_a));
+	printf("is sorted: %d\n", is_sorted(ps.stack_a, ps.size_a));*/
 	
 	//fill_sorted(&ps);
 	//fill_tmp(&ps);

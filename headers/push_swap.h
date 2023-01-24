@@ -6,7 +6,7 @@
 /*   By: romachad </var/spool/mail/coret>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:49:08 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/22 21:58:39 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/24 06:38:18 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_ps
 }	t_ps;
 
 void	check_input(t_ps *ps, int argc, char *argv[]);
+void	check_single_input(t_ps *ps, int argc, char *argv[]);
 void	error(int code);
 void	swap_a(t_ps *ps);
 void	swap_b(t_ps *ps);

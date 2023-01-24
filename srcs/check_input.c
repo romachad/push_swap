@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:14:42 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/22 02:38:50 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/24 06:43:36 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,52 @@ int	repeated_numbers(int *array, int total)
 	return (0);
 }
 
+void	check_single_input(t_ps *ps, int argc, char *argv[])
+{
+	int	i;
+//	char	*dup;
+	char	**str_n;
+
+	if (check_empty(argc, argv) == -1)
+		error(1);
+	if (check_chars(argc, argv) == -1)
+		error(2);
+//	dup = ft_stdup(argv[0])
+	i = -1;
+	//while (argv[1][0][++i] != '\0')
+	while (argv[1][++i] != '\0')
+	{
+		//if ('\f' == argv[1][0][i] || '\n' == argv[1][0][i] || '\t' == argv[1][0][i] || '\v' == argv[1][0][i])
+		if ('\f' == argv[1][i] || '\n' == argv[1][i] || '\t' == argv[1][i] || '\v' == argv[1][i])
+			ft_memset(&argv[1][i], ' ', 1);
+	}
+	str_n = ft_split(argv[1], ' ');
+	i = 0;
+	while (str_n[i])
+		i++;
+	if (check_size(i, str_n) != 0)
+		//LIBERAR MEMORIA AQUI!
+		error(3);
+	ps->size_a = i;
+	ps->size_b = 0;
+	ps->stack_a = ft_calloc(ps->size_a, sizeof(i));
+	ps->stack_b = ft_calloc(ps->size_a, sizeof(i));
+	ps->tmp = ft_calloc(ps->size_a, sizeof(i));
+	ps->sorted = ft_calloc(ps->size_a, sizeof(i));
+	i = -1;
+	while (str_n[++i])
+		ps->stack_a[i] = ft_atoi(str_n[i]);
+	if (repeated_numbers(ps->stack_a, ps->size_a) == 1)
+	{
+		free(ps->stack_a);
+		free(ps->stack_b);
+		free(ps->tmp);
+		free(ps->sorted);
+		//LIBERAR STR_N
+		error(4);
+	}
+}
+
 void	check_input(t_ps *ps, int argc, char *argv[])
 {
 	int	i;
@@ -91,6 +137,8 @@ void	check_input(t_ps *ps, int argc, char *argv[])
 	{
 		free(ps->stack_a);
 		free(ps->stack_b);
+		free(ps->tmp);
+		free(ps->sorted);
 		error(4);
 	}
 	//	ps->sa = malloc(5 * sizeof(int));
