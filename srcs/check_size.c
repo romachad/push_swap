@@ -6,12 +6,12 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:09:48 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/25 03:18:06 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 04:03:21 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
-#include <stdio.h>
+
 static char	*skip_spaces(const char *str)
 {
 	int	i;
@@ -23,15 +23,13 @@ static char	*skip_spaces(const char *str)
 			if (str[i] != '\r' && str[i] != '\t' && str[i] != '\v')
 				break ;
 	}
-	/*if (str[i] == '-')
-		i++;*/
 	return ((char *) &str[i]);
 }
-//#include <stdio.h>
+
 static int	str_to_uint(char *str, char negative)
 {
-	int	i;
 	unsigned int	n;
+	int				i;
 
 	i = -1;
 	n = 0;
@@ -40,11 +38,8 @@ static int	str_to_uint(char *str, char negative)
 		n = (n * 10) + (*str - 0x30);
 		str++;
 	}
-	//printf("n value: %u\n", n);
 	if (negative == 1)
 	{
-		//printf("ENTRAMO NO NEGATIVE!\n");
-		//if (n > 2147483647 + 1)
 		if (n > 2147483648)
 			return (-1);
 		else
@@ -79,16 +74,11 @@ static int	check_overflow(char *str)
 		return (0);
 }
 
-int	check_size(t_ps *ps, int argc, char *argv[])
+static int	iterate_str(int i, int argc, char *argv[])
 {
 	char	*str;
-	int		i;
 	int		count;
 
-	if (ps->flag_single == 0)
-		i = 0;
-	else
-		i = -1;
 	while (++i < argc)
 	{
 		count = 0;
@@ -102,7 +92,6 @@ int	check_size(t_ps *ps, int argc, char *argv[])
 			count++;
 			str++;
 		}
-		//printf("str: %s, count: %d\n", argv[i], count);
 		if (count > 10)
 			return (-2);
 		else if (count == 10)
@@ -111,4 +100,15 @@ int	check_size(t_ps *ps, int argc, char *argv[])
 			return (-2);
 	}
 	return (0);
+}
+
+int	check_size(t_ps *ps, int argc, char *argv[])
+{
+	int		i;
+
+	if (ps->flag_single == 0)
+		i = 0;
+	else
+		i = -1;
+	return (iterate_str(i, argc, argv));
 }

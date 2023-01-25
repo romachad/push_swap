@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 22:22:59 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/20 00:44:54 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:50:50 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rrotate_a(t_ps *ps)
 	int	swap;
 	int	i;
 
-	if(ps->size_a > 1)
+	if (ps->size_a > 1)
 	{
 		swap = ps->stack_a[ps->size_a - 1];
 		i = ps->size_a;
@@ -34,7 +34,7 @@ void	rrotate_b(t_ps *ps)
 	int	swap;
 	int	i;
 
-	if(ps->size_b > 1)
+	if (ps->size_b > 1)
 	{
 		swap = ps->stack_b[ps->size_b - 1];
 		i = ps->size_b;
@@ -49,8 +49,8 @@ void	rrr(t_ps *ps)
 {
 	int	swap;
 	int	i;
-	
-	if(ps->size_a > 1)
+
+	if (ps->size_a > 1)
 	{
 		swap = ps->stack_a[ps->size_a - 1];
 		i = ps->size_a;
@@ -58,7 +58,7 @@ void	rrr(t_ps *ps)
 			ps->stack_a[i] = ps->stack_a[i - 1];
 		ps->stack_a[0] = swap;
 	}
-	if(ps->size_b > 1)
+	if (ps->size_b > 1)
 	{
 		swap = ps->stack_b[ps->size_b - 1];
 		i = ps->size_b;

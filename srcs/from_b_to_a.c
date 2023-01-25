@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:47:45 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/22 21:56:23 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:51:57 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_the_smallest(int *stack, int size, int n)
 {
 	int	i;
 
-	i = - 1;
+	i = -1;
 	while (++i < size)
 	{
 		if (stack[i] < n)
@@ -62,7 +62,8 @@ static void	evaluate(t_ps *ps)
 			ps->sorted[i] = ps->stack_a[i - 1];
 		ps->sorted[0] = ps->stack_b[0];
 	}
-	if (is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]) && is_sorted(ps->sorted, ps->size_a + 1))
+	if (is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]) \
+			&& is_sorted(ps->sorted, ps->size_a + 1))
 		push_a(ps);
 	else if (is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]))
 	{
@@ -80,9 +81,11 @@ void	from_b_to_a(t_ps *ps)
 {
 	while (ps->size_b > 0)
 	{
-		if (ps->stack_b[0] > ps->stack_b[1] && ps->stack_b[0] > ps->stack_b[ps->size_b - 1])
+		if (ps->stack_b[0] > ps->stack_b[1] \
+				&& ps->stack_b[0] > ps->stack_b[ps->size_b - 1])
 			evaluate(ps);
-		else if (ps->stack_b[1] > ps->stack_b[0] && ps->stack_b[1] > ps->stack_b[ps->size_b - 1])
+		else if (ps->stack_b[1] > ps->stack_b[0] \
+				&& ps->stack_b[1] > ps->stack_b[ps->size_b - 1])
 		{
 			rotate_b(ps);
 			evaluate(ps);

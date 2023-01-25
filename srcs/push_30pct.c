@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 01:59:26 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/22 16:36:45 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:42:54 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	fill_sorted(t_ps *ps)
 {
-	int	i;
-	int	swap;
 	char	flag;
+	int		i;
+	int		swap;
 
-	i = - 1;
+	i = -1;
 	while (++i < ps->size_a)
 		ps->sorted[i] = ps->stack_a[i];
 	flag = 0;
@@ -44,10 +44,10 @@ void	fill_tmp(t_ps *ps)
 	int	i;
 	int	count;
 
-	count = - 1;
+	count = -1;
 	while (++count < ps->size_a)
 	{
-		i = - 1;
+		i = -1;
 		while (++i < ps->size_a)
 		{
 			if (ps->sorted[count] == ps->stack_a[i])

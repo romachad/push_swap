@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 21:50:46 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/25 02:18:51 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:47:13 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,12 @@ void	*free_char_array(char **array)
 		free(array[i]);
 	free(array);
 	return (0);
+}
+
+void	free_stack(t_ps *ps)
+{
+	free(ps->stack_a);
+	free(ps->stack_b);
+	free(ps->tmp);
+	free(ps->sorted);
 }
