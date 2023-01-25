@@ -6,12 +6,12 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:09:48 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/18 01:47:51 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:18:06 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
-
+#include <stdio.h>
 static char	*skip_spaces(const char *str)
 {
 	int	i;
@@ -79,13 +79,16 @@ static int	check_overflow(char *str)
 		return (0);
 }
 
-int	check_size(int argc, char *argv[])
+int	check_size(t_ps *ps, int argc, char *argv[])
 {
 	char	*str;
 	int		i;
 	int		count;
 
-	i = 0;
+	if (ps->flag_single == 0)
+		i = 0;
+	else
+		i = -1;
 	while (++i < argc)
 	{
 		count = 0;

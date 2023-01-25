@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:14:42 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/24 06:43:36 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:18:36 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,51 +50,59 @@ static int	check_empty(int argc, char *argv[])
 	return (0);
 }
 
-int	repeated_numbers(int *array, int total)
+static void allocate_stack(t_ps *ps, int size, char **str)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < total - 1)
+	ps->size_a = size;
+	ps->size_b = 0;
+	ps->stack_a = ft_calloc(ps->size_a, sizeof(size));
+	ps->stack_b = ft_calloc(ps->size_a, sizeof(size));
+	ps->tmp = ft_calloc(ps->size_a, sizeof(size));
+	ps->sorted = ft_calloc(ps->size_a, sizeof(size));
+	size = -1;
+	while (str[++size])
+		ps->stack_a[size] = ft_atoi(str[size]);
+	if (repeated_numbers(ps->stack_a, ps->size_a) == 1)
 	{
-		j = i;
-		while (++j < total)
-		{
-			if (array[i] == array[j])
-				return (1);
-		}
+		free(ps->stack_a);
+		free(ps->stack_b);
+		free(ps->tmp);
+		free(ps->sorted);
+		free_char_array(str);
+		error(4);
 	}
-	return (0);
+	free_char_array(str);
 }
-
+#include <stdio.h>
 void	check_single_input(t_ps *ps, int argc, char *argv[])
 {
 	int	i;
-//	char	*dup;
 	char	**str_n;
 
 	if (check_empty(argc, argv) == -1)
 		error(1);
 	if (check_chars(argc, argv) == -1)
 		error(2);
-//	dup = ft_stdup(argv[0])
 	i = -1;
-	//while (argv[1][0][++i] != '\0')
 	while (argv[1][++i] != '\0')
 	{
-		//if ('\f' == argv[1][0][i] || '\n' == argv[1][0][i] || '\t' == argv[1][0][i] || '\v' == argv[1][0][i])
 		if ('\f' == argv[1][i] || '\n' == argv[1][i] || '\t' == argv[1][i] || '\v' == argv[1][i])
 			ft_memset(&argv[1][i], ' ', 1);
 	}
 	str_n = ft_split(argv[1], ' ');
+	//for (i =0 ; str_n[i]; i++)
+	//	printf("str [%d]: %s\n", i, str_n[i]);
 	i = 0;
 	while (str_n[i])
 		i++;
-	if (check_size(i, str_n) != 0)
-		//LIBERAR MEMORIA AQUI!
+	//printf("i value: %i\n", i);
+	ps->flag_single = 1;
+	if (check_size(ps, i, str_n) != 0)
+	{
+		free_char_array(str_n);
 		error(3);
-	ps->size_a = i;
+	}
+	allocate_stack(ps, i, str_n);
+	/*ps->size_a = i;
 	ps->size_b = 0;
 	ps->stack_a = ft_calloc(ps->size_a, sizeof(i));
 	ps->stack_b = ft_calloc(ps->size_a, sizeof(i));
@@ -109,9 +117,9 @@ void	check_single_input(t_ps *ps, int argc, char *argv[])
 		free(ps->stack_b);
 		free(ps->tmp);
 		free(ps->sorted);
-		//LIBERAR STR_N
+		free_char_array(str_n);
 		error(4);
-	}
+	}*/
 }
 
 void	check_input(t_ps *ps, int argc, char *argv[])
@@ -122,7 +130,8 @@ void	check_input(t_ps *ps, int argc, char *argv[])
 		error(1);
 	if (check_chars(argc, argv) == -1)
 		error(2);
-	if (check_size(argc, argv) != 0)
+	ps->flag_single = 0;
+	if (check_size(ps, argc, argv) != 0)
 		error(3);
 	ps->size_a = argc - 1;
 	ps->size_b = 0;

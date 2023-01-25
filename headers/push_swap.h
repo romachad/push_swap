@@ -6,14 +6,14 @@
 /*   By: romachad </var/spool/mail/coret>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:49:08 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/24 06:38:18 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 03:16:45 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//#include <limits.h>
+#include <stdlib.h>
 
 typedef struct s_ps
 {
@@ -25,6 +25,7 @@ typedef struct s_ps
 	int	*tmp;
 	int	*sorted;
 	int	full_size;
+	int	flag_single;
 	int	rb;
 	int	comp_bit;
 	int	loop;
@@ -53,11 +54,13 @@ void	from_b_to_a(t_ps *ps);
 void	put_smallest_top(t_ps *ps);
 //void	sort_5(t_ps *ps, int *stack, int size);
 void	sort_3(t_ps *ps, int *stack, int size);
+void	*free_char_array(char **array);
+int		repeated_numbers(int *array, int total);
 
 //void	rev_sort_3(t_ps *ps, int *stack, int size);
 //void	mid_a(t_ps *ps);
 int		biggest(int *stack, int size, int n);
-int		check_size(int argc, char *argv[]);
+int		check_size(t_ps *ps, int argc, char *argv[]);
 int		is_sorted(int *stack, int size);
 int		is_rev_sorted(int *stack, int size);
 

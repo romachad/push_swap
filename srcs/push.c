@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:48:43 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/18 21:45:55 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 02:47:00 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	shift_up(int *stack, int *size)
 	int	i;
 
 	i = 0;
-	while (i < *size)
+	while (i < (*size - 1))
 	{
 		stack[i] = stack[i + 1];
 		i++;

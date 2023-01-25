@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 21:50:46 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/22 21:58:58 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/25 02:18:51 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,33 @@ void	put_smallest_top(t_ps *ps)
 		while (ps->stack_a[0] != n)
 			rrotate_a(ps);
 	}
+}
+
+int	repeated_numbers(int *array, int total)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < total - 1)
+	{
+		j = i;
+		while (++j < total)
+		{
+			if (array[i] == array[j])
+				return (1);
+		}
+	}
+	return (0);
+}
+
+void	*free_char_array(char **array)
+{
+	int	i;
+
+	i = -1;
+	while (array[++i])
+		free(array[i]);
+	free(array);
+	return (0);
 }
