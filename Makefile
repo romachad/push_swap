@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS_FILES = main check_input check_size error push swap rotate reverse_rotate is_sorted sort_3 mid_number push_30pct sort_5 from_b_to_a utils
+SRCS_FILES = main check_input check_size error push swap rotate reverse_rotate is_sorted sort_3 mid_number push_30pct sort_5 from_b_to_a utils fake_push fake_rotate fake_reverse_rotate fake_b_to_a simulation fake_swap
 HEADERS_FILES = push_swap libft
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))

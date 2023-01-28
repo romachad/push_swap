@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   from_b_to_a.c                                      :+:      :+:    :+:   */
+/*   fake_b_to_a.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:47:45 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/28 15:36:13 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/28 15:35:16 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
 //#include "../headers/ft_printf.h"
-static int	is_the_smallest(int *stack, int size, int n)
+static int	fake_is_the_smallest(int *stack, int size, int n)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ static int	is_the_smallest(int *stack, int size, int n)
 	return (1);
 }
 
-static void	put_smallest_after_n(t_ps *ps, int n)
+static void	fake_put_smallest_after_n(t_ps *ps, int n)
 {
 	int	i;
 	int	after_n;
@@ -34,7 +34,7 @@ static void	put_smallest_after_n(t_ps *ps, int n)
 	i = -1;
 	while (n > ps->sorted[++i] && i < ps->size_a);
 		;
-		after_n = ps->sorted[i];
+	after_n = ps->sorted[i];
 	i = -1;
 	while (ps->stack_a[++i] != after_n)
 		;
@@ -42,19 +42,19 @@ static void	put_smallest_after_n(t_ps *ps, int n)
 	{
 		while (ps->stack_a[0] != after_n)
 		{
-			rotate_a(ps);
+			fake_rotate_a(ps);
 		}
 	}
 	else
 	{
 		while (ps->stack_a[0] != after_n)
 		{
-			rrotate_a(ps);
+			fake_rrotate_a(ps);
 		}
 	}
 }
 
-static void	evaluate(t_ps *ps)
+static void	fake_evaluate(t_ps *ps)
 {
 	int	i;
 
@@ -66,24 +66,24 @@ static void	evaluate(t_ps *ps)
 			ps->sorted[i] = ps->stack_a[i - 1];
 		ps->sorted[0] = ps->stack_b[0];
 	}
-	if (is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]) \
+	if (fake_is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]) \
 			&& is_sorted(ps->sorted, ps->size_a + 1))
-		push_a(ps);
-	else if (is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]))
+		fake_push_a(ps);
+	else if (fake_is_the_smallest(ps->stack_a, ps->size_a, ps->stack_b[0]))
 	{
-		put_smallest_top(ps);
-		push_a(ps);
+		fake_put_smallest_top(ps);
+		fake_push_a(ps);
 	}
 	else
 	{
-		put_smallest_after_n(ps, ps->stack_b[0]);
-		push_a(ps);
+		fake_put_smallest_after_n(ps, ps->stack_b[0]);
+		fake_push_a(ps);
 		if (ps->stack_a[0] > ps->stack_a[1])
-			swap_a(ps);
+			fake_swap_a(ps);
 	}
 }
 
-static void	push_smallest(t_ps *ps, int int_comp)
+static void	fake_push_smallest(t_ps *ps, int int_comp)
 {
 	int	*s;
 	int	i;
@@ -105,26 +105,17 @@ static void	push_smallest(t_ps *ps, int int_comp)
 			break ;
 	if (s[i] == n)
 		while (s[0] != n)
-			rotate_b(ps);
+			fake_rotate_b(ps);
 	else
 		while (s[0] != n)
-			rrotate_b(ps);
-	evaluate(ps);
+			fake_rrotate_b(ps);
+	fake_evaluate(ps);
 }
 
-void	from_b_to_a(t_ps *ps, t_ps *fake)
+void	fake_b_to_a(t_ps *ps, int int_comp)
 {
-	int	int_comp;
-	int	loop;
-
-	loop = 0;
 	while (ps->size_b > 0)
 	{
-		if (loop % 10 == 0)
-		{
-			int_comp = simulation(ps, fake);
-		}
-		push_smallest(ps, int_comp);
-		loop++;
+		fake_push_smallest(ps, int_comp);
 	}
 }

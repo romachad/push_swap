@@ -6,7 +6,7 @@
 /*   By: romachad </var/spool/mail/coret>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:49:08 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/25 04:15:48 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/28 15:37:11 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,19 @@
 
 # include <stdlib.h>
 
+
+# include <limits.h>
 typedef struct s_ps
 {
 	int	*stack_a;
 	int	size_a;
-	int	ra;
 	int	*stack_b;
 	int	size_b;
 	int	*tmp;
 	int	*sorted;
 	int	full_size;
 	int	flag_single;
-	int	rb;
-	int	comp_bit;
-	int	loop;
+	int	count;
 }	t_ps;
 
 void	check_input(t_ps *ps, int argc, char *argv[]);
@@ -45,11 +44,25 @@ void	rotate_rr(t_ps *ps);
 void	rrotate_a(t_ps *ps);
 void	rrotate_b(t_ps *ps);
 void	rrr(t_ps *ps);
+
+void	fake_swap_a(t_ps *ps);
+void	fake_swap_b(t_ps *ps);
+void	fake_swap_ss(t_ps *ps);
+void	fake_push_a(t_ps *ps);
+void	fake_push_b(t_ps *ps);
+void	fake_rotate_a(t_ps *ps);
+void	fake_rotate_b(t_ps *ps);
+void	fake_rotate_rr(t_ps *ps);
+void	fake_rrotate_a(t_ps *ps);
+void	fake_rrotate_b(t_ps *ps);
+void	fake_rrr(t_ps *ps);
+void	fake_put_smallest_top(t_ps *ps);
+
 void	push_30pct(t_ps *ps);
 void	fill_sorted(t_ps *ps);
 void	fill_tmp(t_ps *ps);
 void	sort_5(t_ps *ps);
-void	from_b_to_a(t_ps *ps);
+void	from_b_to_a(t_ps *ps, t_ps *fake);
 void	put_smallest_top(t_ps *ps);
 void	sort_3(t_ps *ps, int *stack, int size);
 void	free_stack(t_ps *ps);
@@ -58,5 +71,8 @@ int		repeated_numbers(int *array, int total);
 int		biggest(int *stack, int size, int n);
 int		check_size(t_ps *ps, int argc, char *argv[]);
 int		is_sorted(int *stack, int size);
+
+int		simulation(t_ps *ps, t_ps *fake);
+void	fake_b_to_a(t_ps *ps, int int_comp);
 
 #endif
