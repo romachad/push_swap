@@ -6,12 +6,12 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:47:45 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/28 15:36:13 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:54:04 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/push_swap.h"
-//#include "../headers/ft_printf.h"
+
 static int	is_the_smallest(int *stack, int size, int n)
 {
 	int	i;
@@ -32,9 +32,9 @@ static void	put_smallest_after_n(t_ps *ps, int n)
 
 	fill_sorted(ps);
 	i = -1;
-	while (n > ps->sorted[++i] && i < ps->size_a);
+	while (n > ps->sorted[++i] && i < ps->size_a)
 		;
-		after_n = ps->sorted[i];
+	after_n = ps->sorted[i];
 	i = -1;
 	while (ps->stack_a[++i] != after_n)
 		;
@@ -96,9 +96,9 @@ static void	push_smallest(t_ps *ps, int int_comp)
 		if (n > s[i])
 			n = s[i];
 	i = 0;
-	while(--i > -int_comp && ps->size_b + i > 0)
+	while (--i > -int_comp && ps->size_b + i > 0)
 		if (n > s[ps->size_b + i])
-			n = s[ps->size_b +i];
+			n = s[ps->size_b + i];
 	i = -1;
 	while (++i < int_comp && i < ps->size_b)
 		if (s[i] == n)

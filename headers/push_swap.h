@@ -6,7 +6,7 @@
 /*   By: romachad </var/spool/mail/coret>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:49:08 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/28 15:37:11 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/29 00:22:49 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-
-
 # include <limits.h>
+
 typedef struct s_ps
 {
 	int	*stack_a;
@@ -44,7 +43,6 @@ void	rotate_rr(t_ps *ps);
 void	rrotate_a(t_ps *ps);
 void	rrotate_b(t_ps *ps);
 void	rrr(t_ps *ps);
-
 void	fake_swap_a(t_ps *ps);
 void	fake_swap_b(t_ps *ps);
 void	fake_swap_ss(t_ps *ps);
@@ -57,10 +55,8 @@ void	fake_rrotate_a(t_ps *ps);
 void	fake_rrotate_b(t_ps *ps);
 void	fake_rrr(t_ps *ps);
 void	fake_put_smallest_top(t_ps *ps);
-
 void	push_30pct(t_ps *ps);
 void	fill_sorted(t_ps *ps);
-void	fill_tmp(t_ps *ps);
 void	sort_5(t_ps *ps);
 void	from_b_to_a(t_ps *ps, t_ps *fake);
 void	put_smallest_top(t_ps *ps);
@@ -71,7 +67,6 @@ int		repeated_numbers(int *array, int total);
 int		biggest(int *stack, int size, int n);
 int		check_size(t_ps *ps, int argc, char *argv[]);
 int		is_sorted(int *stack, int size);
-
 int		simulation(t_ps *ps, t_ps *fake);
 void	fake_b_to_a(t_ps *ps, int int_comp);
 
