@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romachad </var/spool/mail/coret>           +#+  +:+       +#+        */
+/*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:49:08 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/29 00:22:49 by romachad         ###   ########.fr       */
+/*   Updated: 2023/01/30 23:29:18 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdlib.h>
 # include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 typedef struct s_ps
 {
@@ -28,6 +32,12 @@ typedef struct s_ps
 	int	flag_single;
 	int	count;
 }	t_ps;
+
+typedef struct s_cmds
+{
+	char	*cmd;
+	struct s_cmds	*next;
+}	t_cmds;
 
 void	check_input(t_ps *ps, int argc, char *argv[]);
 void	check_single_input(t_ps *ps, int argc, char *argv[]);
@@ -69,5 +79,7 @@ int		check_size(t_ps *ps, int argc, char *argv[]);
 int		is_sorted(int *stack, int size);
 int		simulation(t_ps *ps, t_ps *fake);
 void	fake_b_to_a(t_ps *ps, int int_comp);
+char	*get_next_line(int fd);
+void	read_commands(t_ps *ps);
 
 #endif
