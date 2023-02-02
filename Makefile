@@ -42,25 +42,21 @@ $(OBJS_B_DIR)%.o: $(BONUS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(HEADERS) $(OBJS) $(OBJS_C) libs
-	$(CC) $(CFLAGS) $(COMMON) $(SRCS) libs/libftprintf.a libs/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(COMMON) $(SRCS) libs/libft.a -o $(NAME)
 
 $(NAME_B): $(HEADERS) $(OBJS_C) $(OBJS_B) libs
 	$(CC) $(CFLAGS) $(COMMON) $(BONUS) libs/libft.a -o $(NAME_B)
 
 $(HEADERS):
 	ln libft/headers/libft.h $(HEADERS_DIR)
-	ln printf/srcs/ft_printf.h $(HEADERS_DIR)
 
 libs: $(HEADERS)
 	make -C ./libft
 	@mkdir -p $(LIB_DIR)
 	mv ./libft/libft.a $(LIB_DIR)
-	make -C ./printf
-	mv ./printf/libftprintf.a $(LIB_DIR)
 
 clean:
 	make clean -C ./libft
-	make clean -C ./printf
 	rm -rf $(OBJS_DIR)
 	rm -rf $(OBJS_C_DIR)
 	rm -rf $(OBJS_B_DIR)
@@ -68,7 +64,6 @@ clean:
 fclean: clean
 	rm -rf libs
 	rm -rf $(HEADERS_DIR)libft.h
-	rm -rf $(HEADERS_DIR)ft_printf.h
 	rm -rf $(NAME)
 	rm -rf $(NAME_B)
 

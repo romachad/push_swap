@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 03:22:58 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/25 04:14:24 by romachad         ###   ########.fr       */
+/*   Updated: 2023/02/02 00:37:38 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ static void	choose_which_to_push(t_ps *ps)
 			&& ps->stack_a[1] < ps->stack_a[ps->size_a - 1])
 	{
 		swap_a(ps);
+		if (is_sorted(ps->stack_a, ps->size_a) && ps->size_a == ps->full_size)
+			return ;
 		push_b(ps);
 	}
 	else
 	{
 		rrotate_a(ps);
+		if (is_sorted(ps->stack_a, ps->size_a) && ps->size_a == ps->full_size)
+			return ;
 		push_b(ps);
 	}
 }

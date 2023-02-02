@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 21:49:27 by romachad          #+#    #+#             */
-/*   Updated: 2023/02/01 02:10:25 by romachad         ###   ########.fr       */
+/*   Updated: 2023/02/02 02:27:35 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	exec(t_ps *ps, char *cmd)
 
 static void	clear_list(t_cmds *list)
 {
-	t_cmds *temp;
+	t_cmds	*temp;
 
 	while (list)
 	{
@@ -71,7 +71,7 @@ static void	add_command(t_cmds *list, char *line)
 
 static void	run_commands(t_ps *ps, t_cmds *list)
 {
-	t_cmds *tmp;
+	t_cmds	*tmp;
 
 	tmp = list;
 	while (tmp->next || (tmp->next == NULL && tmp->cmd))
