@@ -6,7 +6,7 @@
 /*   By: romachad <romachad@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 19:43:49 by romachad          #+#    #+#             */
-/*   Updated: 2023/01/29 00:19:18 by romachad         ###   ########.fr       */
+/*   Updated: 2023/02/05 03:15:01 by romachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	sort(t_ps *ps, t_ps *fake)
 	fake->stack_b = malloc(ps->full_size * sizeof(ps->full_size));
 	fake->tmp = malloc(ps->full_size * sizeof(ps->full_size));
 	fake->sorted = malloc(ps->full_size * sizeof(ps->full_size));
+	if (is_sorted(ps->stack_a, ps->size_a))
+		return ;
 	if (ps->size_a > 5)
 		push_30pct(ps);
 	if (ps->size_a == 3)
@@ -47,13 +49,7 @@ int	main(int argc, char *argv[])
 	else
 		check_input(&ps, argc, argv);
 	sort(&ps, &fake);
-	free(ps.stack_a);
-	free(ps.stack_b);
-	free(ps.tmp);
-	free(ps.sorted);
-	free(fake.stack_a);
-	free(fake.stack_b);
-	free(fake.tmp);
-	free(fake.sorted);
+	free_stack(&ps);
+	free_stack(&fake);
 	return (0);
 }
